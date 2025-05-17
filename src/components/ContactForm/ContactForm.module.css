@@ -1,0 +1,64 @@
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    border: 2px solid black;
+    padding: 20px;
+    margin-bottom: 30px;
+    border-radius: 5px;
+
+}
+.contactLabel {
+    text-align: left;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: black;
+
+}
+.contactInput {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 5px;
+    color: black;
+    padding: 8px;
+    margin-bottom: 20px;
+    outline: none;
+}
+/* Забрати стрілки в полі для вводу номера */
+.contactInput[type="number"]::-webkit-outer-spin-button,
+.contactInput[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.contactInput:active,
+.contactInput:focus {
+    background-color: white;
+    color: black;
+    border-color: #646cff;
+    box-shadow: 0 0 5px rgba(100, 108, 255, 0.5);
+    outline: none;
+}    
+.contactError {
+    color: red;
+}
+.addContactBtn {
+    display: block;
+    width: 100px;
+    padding: 10px;
+    margin: 20px auto 0 auto;
+    font-size: 12px;
+    border-radius: 5px;
+    border: none;
+    background-color: #6d70a1;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.addContactBtn:hover,
+.addContactBtn:active,
+.addContactBtn:focus { 
+    background-color:#55589a;
+    border: none;
+    outline: none;
+}

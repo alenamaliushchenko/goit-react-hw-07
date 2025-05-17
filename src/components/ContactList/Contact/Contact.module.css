@@ -1,0 +1,43 @@
+.contactItem {
+    margin-bottom: 16px;
+    border: 1px solid rgb(11, 10, 10);
+    border-radius: 5px;
+    padding: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: black;
+}
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+.info {
+    display: flex;
+    flex-direction: column;
+}
+.avatarBlock {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+.phoneBlock {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 10px;
+}
+.buttonWrapper button{
+    padding: 6px 12px;
+    background-color: #007bff;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+    border: none;
+  }
+  
+.buttonWrapper button:hover {
+    background-color: #0056b3;
+    outline: none;
+}
+  

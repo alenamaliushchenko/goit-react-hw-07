@@ -1,0 +1,27 @@
+.searchBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+.searchTitle {
+    font-size: 20px;
+    color: black;
+}
+.searchInput {
+    width: 300px;
+    height: 30px;
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px solid black;
+    color: black;
+}
+.searchInput:hover,
+.searchInput:active,
+.searchInput:focus {
+    border-color: #646cff;
+    box-shadow: 0 0 5px rgba(100, 108, 255, 0.5);
+    outline: none;
+}
