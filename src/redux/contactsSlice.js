@@ -1,5 +1,5 @@
 import { createSlice, nanoid } from "@reduxjs/toolkit";
-import contactsData from '../contacts.json';
+import contactsData from '../components/contacts.json';
 
 const initialState = {
   items: contactsData,
@@ -17,6 +17,8 @@ const slice = createSlice({
                         id: nanoid(),
                         name,
                         number,
+                        avatar: "https://cdn-icons-png.flaticon.com/128/151/151782.png",
+                        phone: "https://cdn-icons-png.flaticon.com/128/151/151768.png" 
                     },
                 };
             },
