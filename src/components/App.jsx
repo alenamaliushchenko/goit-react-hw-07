@@ -1,58 +1,54 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import SearchBox from './SearchBox/SearchBox';
-import contactsData from './contacts.json';
-import '../components/App.module.css';
-import { nanoid } from 'nanoid';
+
+import css from '../components/App.module.css';
+
+import { fetchContacts, addContact, deleteContact } from '../redux/contactsOps';
+
+import {
+  selectFilteredContacts
+} from '../redux/contactsSlice';
+
+import {
+  selectFilter,
+  changeFilter
+} from '../redux/filtersSlice';
 
 
-const App = () => { 
-  const [contacts, setContacts] = useState([]);
-  const [filter, setFilter] = useState("");
+const App = () => {
+  const dispatch = useDispatch();
 
-  // Завантажуємо контакти з LocalStorage при завантаженні сторінки
-  useEffect (() => {
-    const storedContacts = JSON.parse(localStorage.getItem("contacts"));
-    if(storedContacts && storedContacts.length > 0){
-      setContacts(storedContacts);
-    } else {
-      setContacts(contactsData);
-      localStorage.setItem("contacts", JSON.stringify(contactsData));
-    }
-  }, []);
-  
-   // Зберігаємо контакти в LocalStorage щоразу, коли вони змінюються
-  useEffect (() => {
-      localStorage.setItem("contacts", JSON.stringify(contacts));
-    }, [contacts]);
+  const contacts = useSelector(selectFilteredContacts);
+  const filter = useSelector(selectFilter);
 
-  const addContact = (newContact) => {
-    const contactWithId = {
-      ...newContact,
-        id:nanoid(),
-        avatar: "https://cdn-icons-png.flaticon.com/128/151/151782.png",
-        phone: "https://cdn-icons-png.flaticon.com/128/151/151768.png" 
-      }
-  
-  setContacts(prevContacts => [...prevContacts, contactWithId]);
-};
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
-  const handleDelete = (id) => {
-    setContacts(prev => prev.filter(contact => contact.id !== id));
-  }
+  const handleAddContact = (newContact) => {
+    dispatch(addContact(newContact));
+  };
 
-  const filteredContacts = contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()))
+  const handleDeleteContact = (id) => {
+    dispatch(deleteContact(id));
+  };
+
+  const handleFilterChange = (value) => {
+    dispatch(changeFilter(value));
+  };
 
   return (
-    <div className='phonebook'>
-      <h1 className='titleName'>Phonebook</h1>
-      <ContactForm addContact={addContact} />
-      <SearchBox value={filter} onChange={setFilter}/> 
-      <ContactList contacts = {filteredContacts} deleteContact={handleDelete}/>
+    <div className={css.phonebook}>
+      <h1 className={css.titleName}>Phonebook</h1>
+      <ContactForm addContact={handleAddContact} />
+      <SearchBox value={filter} onChange={handleFilterChange} />
+      <ContactList contacts={contacts} deleteContact={handleDeleteContact} />
     </div>
-  )  
-}
+  );
+};
 
-
-export default App
+export default App;
